@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.util.AttributeSet;
@@ -16,9 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CanvasActivity extends View {
-    Paint paint1 = new Paint();
-    Paint paint2 = new Paint();
-    Paint paint3 = new Paint();
+    Paint paint_red = new Paint();
+    Paint paint_blue = new Paint();
+    Paint paint_green = new Paint();
+    Paint paint_black = new Paint();
     private List<Dot> dots = new ArrayList<>();
     private List<Connection> connections = new ArrayList<>();
     Dot selectedDot;
@@ -37,28 +37,33 @@ public class CanvasActivity extends View {
     }
 
     public void setValues() {
-        paint1 = new Paint();
-        paint2 = new Paint();
-        paint2.setColor(Color.BLUE);
-        paint2.setStrokeWidth(8);
-        paint1.setStrokeWidth(8);
-        paint1.setColor(Color.RED);
-        paint3 = new Paint();
-        paint3.setColor(Color.GREEN);
-        paint3.setStrokeWidth(8);
-        dots.add(new Dot(800, 300, paint1));
-        dots.add(new Dot(400, 500, paint1));
-        dots.add(new Dot(400, 700, paint2));
-        dots.add(new Dot(800, 500, paint2));
-        dots.add(new Dot(400, 300, paint3));
-        dots.add(new Dot(800, 700, paint3));
+        paint_red = new Paint();
+        paint_blue = new Paint();
+        paint_blue.setColor(Color.BLUE);
+        paint_blue.setStrokeWidth(15);
+        paint_red.setStrokeWidth(15);
+        paint_red.setColor(Color.RED);
+        paint_green = new Paint();
+        paint_green.setColor(Color.GREEN);
+        paint_green.setStrokeWidth(15);
+        paint_black = new Paint();
+        paint_black.setColor(Color.BLACK);
+        paint_black.setStrokeWidth(15);
+        dots.add(new Dot(300, 850, paint_red));
+        dots.add(new Dot(825, 1025, paint_red));
+        dots.add(new Dot(650, 500, paint_blue));
+        dots.add(new Dot(425, 1025, paint_black));
+        dots.add(new Dot(1000, 850, paint_green));
+        dots.add(new Dot(425, 675, paint_green));
+        dots.add(new Dot(650, 1200, paint_blue));
+        dots.add(new Dot(825, 675, paint_black));
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         for (Dot dot : dots) {
-            canvas.drawCircle(dot.getX(), dot.getY(), 50, dot.getPaint());
+            canvas.drawCircle(dot.getX(), dot.getY(), 80, dot.getPaint());
         }
         for (Connection connection : connections) {
             canvas.drawLine(connection.getStart().x, connection.getStart().y,
